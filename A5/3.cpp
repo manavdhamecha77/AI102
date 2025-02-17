@@ -1,3 +1,18 @@
+/*
+Write a C/C++ code to implement stack with following operations using Linked List.
+
+a) create () = Create a stack.
+b) push() = Pushing (storing) an element on the stack
+c) pop() = Removing (accessing) an element from the stack.
+d) peek() = Get the top data element of the stack, without removing it
+e) isFull() = Check if stack is full.
+f) isEmpty() = Check whether the stack is empty, and return true or false.
+
+Note: 
+(i) Create a separate function for each of the operations defined above.
+(ii) Define the stack as follows.
+*/
+
 #include <iostream>
 using namespace std;
 
