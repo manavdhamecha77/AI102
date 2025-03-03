@@ -3,64 +3,65 @@ Write a C/C++ program to convert an infix expression to a postfix expression usi
 a stack, handling the operators +, -, *, /, and parentheses.
 */
 
-#include <iostream>
-#include <stack>
+#include<bits/stdc++.h>
 using namespace std;
-
 int precedence(char op) {
     if (op == '+' || op == '-') return 1;
     if (op == '*' || op == '/') return 2;
-    if (op == '^') return 3;
+    if (op=='^') return 3;
     return 0;
 }
 
-string infixToPostfix(string infix) {
-    stack<char> st;
-    string postfix = "";
-    
-    for (int i = 0; i < infix.length(); i++) {
-        char c = infix[i];
+string converter(string infix) {
+    stack<char> s;
+    string ans = "";
 
+    for (char c : infix) {
         if (isalnum(c)) {
-            postfix += c;
-        }
-        
+            ans+= c;
+        } 
+
         else if (c == '(') {
-            st.push(c);
-        }
+            s.push(c);
+        } 
         
         else if (c == ')') {
-            while (!st.empty() && st.top() != '(') {
-                postfix += st.top();
-                st.pop();
+            while (!s.empty() && s.top() != '(') 
+            {
+                ans += s.top();
+                s.pop();
             }
-            st.pop(); 
+            s.pop();
         }
         
         else {
-            while (!st.empty() && precedence(st.top()) >= precedence(c)) {
-                postfix += st.top();
-                st.pop();
+            if(!s.empty() && precedence(s.top())==3 && precedence(c)==3)
+            {
+                s.push(c);
+                continue;
             }
-            st.push(c);
+            
+            while (!s.empty() && precedence(s.top()) >= precedence(c)) 
+            {
+                ans += s.top();
+                s.pop();
+            }
+            s.push(c);
         }
     }
-   
-    while (!st.empty()) {
-        postfix += st.top();
-        st.pop();
+    while (!s.empty()) {
+        ans += s.top();
+        s.pop();
     }
-    
-    return postfix;
+    return ans;
 }
 
 int main() {
     string infix;
     cout << "Enter infix expression: ";
     cin >> infix;
-    
-    string postfix = infixToPostfix(infix);
+
+    string postfix = converter(infix);
     cout << "Postfix expression: " << postfix << endl;
-    
     return 0;
 }

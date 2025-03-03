@@ -1,32 +1,24 @@
 /*
-Implement a queue using a linked list with two pointers: front and rear. 
-Elements can only be inserted via the rear pointer and deleted via the front pointer.
-The queue has the following basic operations:
-• enqueue() – Insert an element in the queue.
-• dequeue() – Remove the element from the queue.
-• peek() – Return the element at the front node of the queue
-• isFull() – Validates if the queue is full or not.
-• isEmpty() – Checks if the queue is empty.
+
 */
 
 #include <iostream>
 using namespace std;
 
-class Node 
+struct Node 
 {
-    public:
     int data;
     Node* next;
 };
 
-class Queue 
+class CircularQueue 
 {
-    public:
+public:
     Node* front;
     Node* rear;
 
-    
-    Queue() 
+
+    CircularQueue() 
     {
         front = rear = NULL;
     }
@@ -45,6 +37,7 @@ class Queue
 
         rear->next = newNode;
         rear = newNode;
+        rear->next = front;
     }
 
     void dequeue() 
@@ -54,8 +47,15 @@ class Queue
             return;
         }
 
+        if (front == rear) 
+        {
+            delete front;
+            front = rear = nullptr;
+        } 
+
         Node* temp = front;
         front = front->next;
+        rear->next = front;
 
         if (front == NULL) 
         {
@@ -75,53 +75,49 @@ class Queue
         return front->data;
     }
 
-    bool isFull() 
-    {
-        Node* temp = new Node();
-        if (temp == NULL) 
-        {
-            return true;
-        }
-
-        delete temp;
-        return false;
-    }
-
     bool isEmpty() 
     {
-        return front == NULL;
+        return front == nullptr; 
     }
+
 
     void display() 
     {
+        if(front == NULL)
+        {
+            return;
+        }
+
         Node* temp = front;
-        while (temp != NULL) 
+        do 
         {
             cout << temp->data << " -> ";
             temp = temp->next;
-        }
+        }while (temp != front);
         cout << endl;
+
+        cout << " (Back to Front)\n";
     }
 
 };
 
-int main()
+int main() 
 {
-    Queue q;
-    cout << "***************** Queue operations *****************" << endl;
-
-    cout << "1. Enqueue" << endl;
-    cout << "2. Dequeue" << endl;
-    cout << "3. Peek" << endl;
-    cout << "4. isFull" << endl;
-    cout << "5. isEmpty" << endl;
-    cout << "6. Display" << endl;
-    cout << "7. Exit" << endl;
-
+    CircularQueue cq;
     int choice, data;
+
     
     while (true) 
     {
+        cout << "***************** Circular Queue operations *****************" << endl;
+
+        cout << "1. Enqueue" << endl;
+        cout << "2. Dequeue" << endl;
+        cout << "3. Peek" << endl;
+        cout << "4. isEmpty" << endl;
+        cout << "5. Display" << endl;
+        cout << "6. Exit" << endl;
+
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -130,32 +126,28 @@ int main()
             case 1:
                 cout << "Enter data: ";
                 cin >> data;
-                q.enqueue(data);
-                q.display();
+                cq.enqueue(data);
+                cq.display();
                 break;
 
             case 2:
-                q.dequeue();
-                q.display();
+                cq.dequeue();
+                cq.display();
                 break;
             
             case 3:
-                cout << "Front element: " << q.peek() << endl;
+                cout << "Front element: " << cq.peek() << endl;
                 break;
 
             case 4:
-                cout << "Queue is full: " << q.isFull() << endl;
+                cout << "Queue is empty: " << cq.isEmpty() << endl;
                 break;
 
             case 5:
-                cout << "Queue is empty: " << q.isEmpty() << endl;
+                cq.display();
                 break;
 
             case 6:
-                q.display();
-                break;
-
-            case 7:
                 cout << "Exiting..." << endl;
                 exit(0);        
 
@@ -164,3 +156,9 @@ int main()
         }
     }
 }
+
+
+
+
+         
+// front -> 10 <- 20 <- 30 <- rear

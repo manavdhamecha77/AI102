@@ -8,7 +8,7 @@ public:
 };
 
 class CircularLinkedList {
-private:
+public:
     Node* head;
 
 public:
@@ -228,6 +228,5 @@ int main() {
                 cout << "Invalid choice!" << endl;
         }
     }
-
     return 0;
 }
