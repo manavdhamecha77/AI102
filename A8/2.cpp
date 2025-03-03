@@ -1,7 +1,3 @@
-/*
-
-*/
-
 #include <iostream>
 using namespace std;
 
@@ -17,7 +13,6 @@ public:
     Node* front;
     Node* rear;
 
-
     CircularQueue() 
     {
         front = rear = NULL;
@@ -32,6 +27,7 @@ public:
         if (rear == NULL) 
         {
             front = rear = newNode;
+            rear->next = front;
             return;
         }
 
@@ -50,18 +46,13 @@ public:
         if (front == rear) 
         {
             delete front;
-            front = rear = nullptr;
+            front = rear = NULL;
+            return;
         } 
 
         Node* temp = front;
         front = front->next;
         rear->next = front;
-
-        if (front == NULL) 
-        {
-            rear = NULL;
-        }
-
         delete temp;
     }
 
@@ -71,19 +62,17 @@ public:
         {
             return -1;
         }
-
         return front->data;
     }
 
     bool isEmpty() 
     {
-        return front == nullptr; 
+        return front == NULL; 
     }
-
 
     void display() 
     {
-        if(front == NULL)
+        if (front == NULL)
         {
             return;
         }
@@ -93,12 +82,9 @@ public:
         {
             cout << temp->data << " -> ";
             temp = temp->next;
-        }while (temp != front);
-        cout << endl;
-
-        cout << " (Back to Front)\n";
+        } while (temp != front);
+        cout << "(Back to Front)" << endl;
     }
-
 };
 
 int main() 
@@ -106,18 +92,15 @@ int main()
     CircularQueue cq;
     int choice, data;
 
-    
     while (true) 
     {
         cout << "***************** Circular Queue operations *****************" << endl;
-
         cout << "1. Enqueue" << endl;
         cout << "2. Dequeue" << endl;
         cout << "3. Peek" << endl;
         cout << "4. isEmpty" << endl;
         cout << "5. Display" << endl;
         cout << "6. Exit" << endl;
-
         cout << "Enter your choice: ";
         cin >> choice;
 
@@ -156,9 +139,3 @@ int main()
         }
     }
 }
-
-
-
-
-         
-// front -> 10 <- 20 <- 30 <- rear
