@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Student Name,Roll Number,Department
 Aarav Patel,SVNIT001,Computer Science
 Ishita Sharma,SVNIT002,Electrical Engineering
@@ -9,3 +10,16 @@ Vedant Iyer,SVNIT007,Chemical Engineering
 Simran Kaur,SVNIT008,Biotechnology
 Aditya Rao,SVNIT009,Aerospace Engineering
 Priya Nair,SVNIT010,Data Science
+=======
+Student Name,Roll Number,Department
+Aarav Patel,SVNIT001,Computer Science
+Ishita Sharma,SVNIT002,Electrical Engineering
+Rohan Mehta,SVNIT003,Mechanical Engineering
+Neha Verma,SVNIT004,Civil Engineering
+Kunal Desai,SVNIT005,Electronics and Communication
+Ananya Joshi,SVNIT006,Information Technology
+Vedant Iyer,SVNIT007,Chemical Engineering
+Simran Kaur,SVNIT008,Biotechnology
+Aditya Rao,SVNIT009,Aerospace Engineering
+Priya Nair,SVNIT010,Data Science
+>>>>>>> ae489f3517636dca531ec86bd26d2f25b6163b49
