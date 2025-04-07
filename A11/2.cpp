@@ -1,3 +1,8 @@
+/* 
+Given an array of non-negative integers, implement the Counting Sort algorithm to sort 
+the array in ascending order.
+*/
+
 #include <iostream>
 #include <vector>
 using namespace std;

@@ -1,8 +1,10 @@
+/* Given an array of non-negative integers, implement the Radix Sort algorithm to sort 
+the array in ascending order. */
+
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Get the maximum value in the array
 int getMax(int arr[], int n) {
     int maxVal = arr[0];
     for (int i = 1; i < n; i++)
@@ -10,7 +12,6 @@ int getMax(int arr[], int n) {
     return maxVal;
 }
 
-// Counting sort for a specific digit place (exp = 1, 10, 100, ...)
 void countingSort(int arr[], int n, int exp) {
     vector<int> output(n);
     vector<int> count(10, 0);
@@ -30,7 +31,6 @@ void countingSort(int arr[], int n, int exp) {
         arr[i] = output[i];
 }
 
-// Radix Sort Function
 void radixSort(int arr[], int n) {
     int maxVal = getMax(arr, n);
     for (int exp = 1; maxVal / exp > 0; exp *= 10)
